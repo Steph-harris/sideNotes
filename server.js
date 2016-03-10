@@ -46,6 +46,14 @@ app.get("/", function(req, res){
   res.render("index");
 });
 
+app.get("/signin", function(req, res){
+  res.render("signin");
+});
+
+app.get("/register", function(req, res){
+  res.render("register");
+});
+
 //error handlers
 app.use(function(req, res, next) {
   var err = new Error('404 Not Found');
