@@ -3,7 +3,7 @@
 <div class="ui modal" id="signin">
   <div class="header">Sign In</div>
   <div class="content">
-    <form class="ui form">
+    <form class="ui form" method="POST" action="/signin">
       <div class="field">
         <label>E-mail</label>
         <input type="email" name="username" placeholder="joe@schmoe.com">
@@ -12,9 +12,10 @@
         <label>Password</label>
         <input type="password" name="password" placeholder="password">
       </div>
-      <!-- <button class="ui button" type="submit">Submit</button> -->
+      <div class="ui field">
+        <input type="submit" value="Submit" class="ui button" />
+      </div>
       <div class="actions">
-        <div class="ui approve button">Submit</div>
         <div class="ui cancel button">Cancel</div>
       </div>
     </form>
@@ -24,27 +25,29 @@
 <div class="ui modal" id="register">
   <div class="header">Register</div>
   <div class="content">
-      <form class="ui form">
-        <div class="field">
-          <label>First Name</label>
-          <input type="text" name="firstName" placeholder="First Name">
-        </div>
-        <div class="field">
-          <label>Last Name</label>
-          <input type="text" name="lastName" placeholder="Last Name">
-        </div>
-        <div class="field">
-          <label>E-mail</label>
-          <input type="email" name="username" placeholder="joe@schmoe.com">
-        </div>
-        <div class="field">
-          <label>Password</label>
-          <input type="password" name="password" placeholder="password">
-        </div>
-        <div class="actions">
-          <div class="ui approve button">Submit</div>
-          <div class="ui cancel button">Cancel</div>
-        </div>
-      </form>
-    </div>
+    <form class="ui form" method="POST" action="/register">
+      <div class="field">
+        <label>First Name</label>
+        <input type="text" name="firstName" placeholder="First Name">
+      </div>
+      <div class="field">
+        <label>Last Name</label>
+        <input type="text" name="lastName" placeholder="Last Name">
+      </div>
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" name="username" placeholder="joe@schmoe.com">
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="password">
+      </div>
+      <div class="ui field">
+        <input type="submit" value="Submit" class="ui button" />
+      </div>
+      <div class="actions">
+        <div class="ui cancel button">Cancel</div>
+      </div>
+    </form>
+  </div>
 </div>

@@ -46,12 +46,15 @@ app.get("/", function(req, res){
   res.render("index");
 });
 
-app.get("/signin", function(req, res){
-  res.render("signin");
+app.post("/signin", function(req, res){
+  debugger;
+  console.log(req.body);
+  res.send("signed in");
 });
 
-app.get("/register", function(req, res){
-  res.render("register");
+app.post("/register", function(req, res){
+  console.log(req.body);
+  res.send("registered");
 });
 
 //error handlers
