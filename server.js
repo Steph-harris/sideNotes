@@ -3,11 +3,9 @@ var express = require('express');
 var app = express();
 // //require (dotenv)
 // require('dotenv').config();
+var sequelize = require("./config/connection.js");
+
 var PORT = process.env.PORT || 8080;
-//Sequelize database setup
-// var Sequelize = require('sequelize');
-// //  "testdb1", "root", ""
-// var connection = new Sequelize(process.env.JAWSDB_URL);
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
@@ -47,14 +45,19 @@ app.get("/", function(req, res){
 });
 
 app.post("/signin", function(req, res){
-  debugger;
   console.log(req.body);
   res.send("signed in");
 });
 
 app.post("/register", function(req, res){
+  debugger;
   console.log(req.body);
-  res.send("registered");
+  User.create(req.body).then(function(result){
+    res.redirect('/?msg=Successfully created account please login');
+  }).catch(function(err) {
+    console.log(err);
+    res.redirect('/?msg='+ "E-mail " + err.errors[0].message);
+  });
 });
 
 //error handlers
@@ -74,8 +77,8 @@ if (app.get('env') === 'development') {
   });
 }
 // database connection via sequelize
-// connection.sync({}).then(function() {
+sequelize.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log("Listening on port %s", PORT);
   });
-// });
+});
