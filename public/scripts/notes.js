@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
   $(".signin").on("click", function(){
     $('#signin').modal('show');
   });

@@ -19,5 +19,3 @@
 - "passport-local": "^1.0.0",
 - "semantic-ui": "^2.1.8",
 - "sequelize": "^3.19.3"
-
-
