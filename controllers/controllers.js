@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var sequelize = require("../config/connection.js");
 
 //requiring passport last
 var passport = require('passport');
