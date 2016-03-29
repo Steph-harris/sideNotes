@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 var sequelize = require("../config/connection.js");
 
+var User = require("../config/connection.js");
+// var Note = require("../config/connection.js");
+
 //requiring passport last
 var passport = require('passport');
 var passportLocal = require('passport-local');
@@ -42,12 +45,11 @@ router.post("/signin", function(req, res){
 
 router.post("/register", function(req, res){
   debugger;
-  console.log(req.body);
   User.create(req.body).then(function(result){
     res.redirect('/?msg=Successfully created account please login');
   }).catch(function(err) {
     console.log(err);
-    res.redirect('/?msg='+ "E-mail " + err.errors[0].message);
+    res.redirect('/?msg=' + err.errors[0].message);
   });
 });
 

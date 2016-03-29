@@ -22,17 +22,19 @@ var User = sequelize.define('user', {
   }
 });
 
-var Note = sequelize.define('note', {
-  title: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  description: {
-    type: Sequelize.STRING,
-    allowNull: false
-  }
-});
+// var Note = sequelize.define('note', {
+//   title: {
+//     type: Sequelize.STRING,
+//     allowNull: false
+//   },
+//   description: {
+//     type: Sequelize.STRING,
+//     allowNull: false
+//   }
+// });
 
-User.hasMany(Note);
+// User.hasMany(Note);
 
 module.exports = sequelize;
+module.exports = User;
+// module.exports = Note;
