@@ -6,8 +6,9 @@ var User = require("../config/connection.js");
 // var Note = require("../config/connection.js");
 
 //requiring passport last
-var passport = require('passport');
-var passportLocal = require('passport-local');
+var passport = require('passport')
+, LocalStrategy = require('passport-local').Strategy;
+// var passportLocal = require('passport-local');
 //requiring bcrypt, hashes passwords
 var bcrypt = require("bcryptjs");
 //requiring bodyParser and initializing for use
@@ -33,18 +34,35 @@ router.use(require('express-session')({
 router.use(passport.initialize());
 router.use(passport.session());
 
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    debugger;
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
 //************* EXPRESS HANDLEBARS CODE STARTS HERE *************/
 router.get("/", function(req, res){
   res.render("index");
 });
 
-router.post("/signin", function(req, res){
-  console.log(req.body);
-  res.send("signed in");
-});
+router.post("/signin",
+  passport.authenticate('local',
+  {
+    successRedirect: '/usersPage',
+    failureRedirect: '/'
+}));
 
 router.post("/register", function(req, res){
-  debugger;
   User.create(req.body).then(function(result){
     res.redirect('/?msg=Successfully created account please login');
   }).catch(function(err) {
